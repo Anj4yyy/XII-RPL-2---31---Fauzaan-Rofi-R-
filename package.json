@@ -1,0 +1,21 @@
+{
+  "nama": "2.pengenalan-http",
+  "version": "1.0.0",
+  "description": "learning http",
+  "main": "serever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "me",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "name": "praktikum-kk4c",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
