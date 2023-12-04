@@ -1,32 +1,21 @@
-const http = require('http');
+const express = require('express')
+const app = express()
+const userrouter = require("./router/users")
+const connectDB = require('./config/db')
 
-const server = http.createServer((req, res) => {
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-    res.writeHead(404, {
-        'Content-Type': 'application/json',
-        'X-Powered-By': 'Node.js',
-    });
+const port = 3000
 
-    let body = [];
-
-    req
-      .on('data', chunk => {
-        body.push(chunk);
-      })
-      .on('end', () => {
-        body = Buffer.concat(body).toString();
-        console.log(body);
-      });
-
-    const data = JSON.stringify({
-        success: false,
-        error: 'Not Found',
-        data: null,
-    })
-
-    res.end(data);
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 })
 
-const PORT = 5000;
+app.use(userrouter)
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+connectDB()
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
